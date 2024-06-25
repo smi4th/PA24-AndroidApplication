@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_footer" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingTop="4dp"
+        android:paddingBottom="8dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/icon_search"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_lens"
+            android:contentDescription="@string/lens" />
+
+        <ImageView
+            android:id="@+id/icon_flight"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_flight"
+            android:contentDescription="@string/flight" />
+
+        <ImageView
+            android:id="@+id/icon_message"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_send"
+            android:contentDescription="@string/send" />
+
+        <ImageView
+            android:id="@+id/icon_home"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_home"
+            android:contentDescription="@string/home" />
+
+    </LinearLayout>
+
+</LinearLayout>

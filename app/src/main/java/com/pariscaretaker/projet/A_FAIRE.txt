@@ -1,0 +1,12 @@
+//A faire
+Messagerie
+Points sur la map
+Clique sur une maison = affichage de la maison
+Disponibilité d'une maison
+Réservation maison
+Services
+NFC validation
+onglet profil sécurité
+Modifier données personnelles
+header
+Recherche de bien est moche
