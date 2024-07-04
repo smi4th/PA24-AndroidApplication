@@ -1,23 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
-    <!-- Messages -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_messages"
+        android:id="@+id/recycler_view_chat"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/footer_layout"/>
+        android:layout_height="match_parent"
+        android:layout_above="@id/footer_layout"
+        android:padding="8dp" />
 
-    <!-- Footer -->
     <include
         layout="@layout/footer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/footer_layout"/>
-
+        android:id="@+id/footer_layout" />
 </RelativeLayout>

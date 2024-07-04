@@ -1,59 +1,61 @@
 package com.pariscaretaker.projet
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import android.util.Log
 
 class ContactAdapter(
-    private val contactList: List<Contact>
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var contactList: List<Contact>
+) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
-    companion object {
-        private const val VIEW_TYPE_HEADER = 0
-        private const val VIEW_TYPE_ITEM = 1
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_item_layout, parent, false)
+        return ContactViewHolder(view)
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0) VIEW_TYPE_HEADER else VIEW_TYPE_ITEM
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == VIEW_TYPE_HEADER) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.header_item_layout, parent, false)
-            HeaderViewHolder(view)
-        } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_item_layout, parent, false)
-            ContactViewHolder(view)
-        }
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is ContactViewHolder) {
-            val contact = contactList[position - 1]
-            holder.bind(contact)
-        }
+    override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
+        val contact = contactList[position]
+        holder.bind(contact)
     }
 
     override fun getItemCount(): Int {
-        return contactList.size + 1
+        return contactList.size
     }
 
-    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    fun updateContacts(newContacts: List<Contact>) {
+        contactList = newContacts
+        notifyDataSetChanged()
     }
 
-    class ContactViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ContactViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         private val name: TextView = view.findViewById(R.id.contact_name)
         private val lastMessage: TextView = view.findViewById(R.id.contact_last_message)
-        private val contacttime: TextView = view.findViewById(R.id.contact_time)
+        private val contactTime: TextView = view.findViewById(R.id.contact_time)
+        private lateinit var contact: Contact
+
+        init {
+            view.setOnClickListener(this)
+        }
 
         fun bind(contact: Contact) {
+            this.contact = contact
             name.text = contact.name
             lastMessage.text = contact.lastMessage
-            contacttime.text = contact.time
+            contactTime.text = contact.time
         }
-    }
 
+        override fun onClick(v: View?) {
+            val context = itemView.context
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra("contact", contact)
+            Log.d("CONTACT_CLICK", "Contact UUID: ${contact.uuid}, Name: ${contact.name}")
+            context.startActivity(intent)
+        }
+
+    }
 }

@@ -1,12 +1,9 @@
 //A faire
-Messagerie
-Points sur la map
 Clique sur une maison = affichage de la maison
 Disponibilité d'une maison
 Réservation maison
 Services
-NFC validation
+NFC validation //MANQUE BDD
 onglet profil sécurité
-Modifier données personnelles
-header
-Recherche de bien est moche
+Modifier données personnelles //Pas forcément utile IMO
+header //peut supp les icones

@@ -93,14 +93,20 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
 
     }
     private fun getDeviceLocation() {
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-            location?.let {
-                val currentLatLng = LatLng(it.latitude, it.longitude)
-                mMap.addMarker(MarkerOptions()
-                    .position(currentLatLng)
-                    .title("Position actuelle")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
+        try{
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                    location?.let {
+                        val currentLatLng = LatLng(it.latitude, it.longitude)
+                        mMap.addMarker(MarkerOptions()
+                            .position(currentLatLng)
+                            .title("Position actuelle")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
+                    }
+                }
             }
+        } catch (e: SecurityException) {
+            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
