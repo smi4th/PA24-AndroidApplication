@@ -91,7 +91,17 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
             }
         }
 
+        mMap.setOnMarkerClickListener { marker ->
+            val housing = housingList?.find { it.title == marker.title }
+            housing?.let {
+                val intent = Intent(this, HousingDetailActivity::class.java)
+                intent.putExtra("housing", it)
+                startActivity(intent)
+            }
+            true
+        }
     }
+
     private fun getDeviceLocation() {
         try{
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -109,6 +119,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
             Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -119,8 +130,9 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
             }
         }
     }
+
     private fun addHouseMarkers() {
-        if(housingList == null) {
+        if (housingList == null) {
             Toast.makeText(this, "No housing found", Toast.LENGTH_LONG).show()
         }
         housingList?.forEach { housing ->

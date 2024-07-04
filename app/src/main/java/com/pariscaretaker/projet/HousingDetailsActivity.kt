@@ -3,7 +3,6 @@ package com.pariscaretaker.projet
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -41,15 +40,11 @@ class HousingDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_housing_detail)
 
-        // Colorie la barre de notif
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.buttonColor)
-        }
-
         housing = intent.getParcelableExtra("housing")!!
 
         val titleTextView = findViewById<TextView>(R.id.housing_detail_title)
         val priceTextView = findViewById<TextView>(R.id.housing_detail_price)
+        val addressTextView = findViewById<TextView>(R.id.housing_detail_address)
         val descriptionTextView = findViewById<TextView>(R.id.housing_detail_description)
         val imageView = findViewById<ImageView>(R.id.housing_detail_image)
         calendarView = findViewById(R.id.calendarView)
@@ -58,6 +53,7 @@ class HousingDetailActivity : AppCompatActivity() {
 
         titleTextView.text = housing.title
         priceTextView.text = housing.price + " €"
+        addressTextView.text = "${housing.street}, ${housing.zipCode} ${housing.city}"
         descriptionTextView.text = housing.description
 
         if (housing.imgPath != "NULL") {
@@ -200,3 +196,4 @@ class HousingDetailActivity : AppCompatActivity() {
         return sharedPref.getString("user_token", null)
     }
 }
+

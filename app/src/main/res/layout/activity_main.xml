@@ -19,8 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/header_item_layout"
-        android:layout_below="@id/header_layout"
-        android:layout_marginTop="8dp"/>
+        android:layout_below="@id/header_layout"/>
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -38,6 +37,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/footer_layout"/>
-
 
 </RelativeLayout>

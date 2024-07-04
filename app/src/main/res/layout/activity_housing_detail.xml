@@ -3,9 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Header -->
+    <include
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/header_layout"
+        android:layout_alignParentTop="true"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/header_layout"
         android:layout_above="@id/footer_layout"
         android:padding="16dp">
 
@@ -39,6 +48,15 @@
                 android:textSize="18sp"
                 android:layout_marginTop="8dp"
                 android:text="Price" />
+
+            <TextView
+                android:id="@+id/housing_detail_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:text="Address" />
 
             <TextView
                 android:id="@+id/housing_detail_description"

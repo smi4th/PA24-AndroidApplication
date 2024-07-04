@@ -1,9 +1,7 @@
 //A faire
-Clique sur une maison = affichage de la maison
-Disponibilité d'une maison
-Réservation maison
+Réservation maison //PAS DE ROUTE SUR LE POSTMAN
 Services
 NFC validation //MANQUE BDD
 onglet profil sécurité
 Modifier données personnelles //Pas forcément utile IMO
-header //peut supp les icones
+
