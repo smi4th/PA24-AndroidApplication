@@ -40,7 +40,8 @@
     <string name="cancel">Annuler</string>
     <string name="nfc_scan">Scanner un badge NFC</string>
 
-
+    <!-- Maison -->
+    <string name="book">Réserver</string>
     <!-- Map -->
     <string name="google_maps_key">AIzaSyD5s9DybDglC_9-XK6JWzL8AiW6UQB3TZk</string>
     <string name="date_format">%1$d/%2$d/%3$d</string>

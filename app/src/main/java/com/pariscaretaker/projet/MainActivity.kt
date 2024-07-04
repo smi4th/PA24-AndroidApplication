@@ -213,7 +213,6 @@ class MainActivity : AppCompatActivity() {
             addressList.add(Pair(jsonObject, address))
         }
 
-        // Function to handle the coordinates fetched for each address
         val handleFetchedCoordinates: (Int) -> Unit = { index ->
             if (index == addressList.size) {
                 callback(housingList)
@@ -304,7 +303,11 @@ class MainActivity : AppCompatActivity() {
                 if (housingList.isNullOrEmpty()) {
                     showError("No data available")
                 } else {
-                    housingAdapter = HousingAdapter(housingList)
+                    housingAdapter = HousingAdapter(housingList) { housing ->
+                        val intent = Intent(this, HousingDetailActivity::class.java)
+                        intent.putExtra("housing", housing)
+                        startActivity(intent)
+                    }
                     recyclerView.adapter = housingAdapter
                 }
             },

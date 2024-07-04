@@ -56,4 +56,5 @@ dependencies {
     implementation(libs.places)
 
     implementation(libs.material)
+    implementation("com.applandeo:material-calendar-view:1.9.0")
 }

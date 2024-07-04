@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 
 class HousingAdapter(
-    private val housingList: List<Housing>
+    private val housingList: List<Housing>,
+    private val clickListener: (Housing) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -35,9 +36,8 @@ class HousingAdapter(
             val adjustedPosition = position - 1
             if (adjustedPosition >= 0 && adjustedPosition < housingList.size) {
                 val housing = housingList[adjustedPosition]
-                holder.bind(housing)
+                holder.bind(housing, clickListener)
             } else {
-                // Handle invalid position case
                 Log.e("HousingAdapter", "Invalid position: $position, adjustedPosition: $adjustedPosition for housingList size: ${housingList.size}")
             }
         }
@@ -48,7 +48,6 @@ class HousingAdapter(
     }
 
     class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Bind header-specific data if needed
     }
 
     class HousingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -56,10 +55,11 @@ class HousingAdapter(
         private val price: TextView = view.findViewById(R.id.housing_price)
         private val city: TextView = view.findViewById(R.id.housing_city)
 
-        fun bind(housing: Housing) {
+        fun bind(housing: Housing, clickListener: (Housing) -> Unit) {
             title.text = housing.title
             price.text = housing.price + " €"
             city.text = housing.city
+            itemView.setOnClickListener { clickListener(housing) }
         }
     }
 }

@@ -39,4 +39,5 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/footer_layout"/>
 
+
 </RelativeLayout>
