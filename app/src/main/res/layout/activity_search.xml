@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".SearchActivity">
+
+    <!-- Questions Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:elevation="4dp"
+        android:background="@drawable/rounded_background">
+
+        <!-- Voyageons! -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voyageons!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:padding="16dp"/>
+
+
+
+        <!-- When Question -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_question"
+                android:contentDescription="@string/question_where" />
+
+            <AutoCompleteTextView
+                android:id="@+id/locationAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Lieu approximatif" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search"
+            android:textColor="@android:color/black"
+            android:backgroundTint="@color/buttonColor"
+            android:padding="16dp"
+            android:layout_alignParentBottom="true"/>
+
+    </LinearLayout>
+
+    <!-- Footer -->
+    <include
+        layout="@layout/footer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/footer_layout"/>
+
+
+</RelativeLayout>

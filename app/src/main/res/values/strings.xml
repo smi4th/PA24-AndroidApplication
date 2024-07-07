@@ -1,0 +1,53 @@
+<resources>
+    <!-- Infos -->
+    <string name="app_name">ParisCaretaker</string>
+    <string name="logo_desc">Logo ParisCaretaker</string>
+
+    <!-- Header -->
+    <string name="title_city">En ville</string>
+    <string name="title_sea">A la mer</string>
+    <string name="title_countryside">En campagne</string>
+    <string name="title_mountain">A la montagne</string>
+    <string name="title_forest">En forêt</string>
+
+    <!-- Footer -->
+    <string name="lens">Rechercher</string>
+    <string name="flight">Voyager</string>
+    <string name="send">Envoyer</string>
+    <string name="home">Accueil</string>
+
+    <!-- Partie choix -->
+    <string name="question_where">On part ou?</string>
+    <string name="question_when">Et quand?</string>
+    <string name="question_when_start">Date de début</string>
+    <string name="question_when_end">Date de fin</string>
+    <string name="question_who">Pour qui?</string>
+    <string name="search">Rechercher</string>
+
+    <!-- Profil -->
+    <string name="profile">Profil</string>
+    <string name="placeholder_profile">Photo de profil par défault</string>
+    <string name="settings">Paramètres</string>
+    <string name="personal_info">Informations personnelles</string>
+    <string name="security">Sécurité</string>
+    <string name="arrow_icon">Icône flèche</string>
+    <string name="logout">Déconnexion</string>
+    <string name="edit_profile">Modifier le profil</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="delete_account_confirmation">Êtes-vous sûr de vouloir supprimer votre compte?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="cancel">Annuler</string>
+    <string name="nfc_scan">Scanner un badge NFC</string>
+
+    <!-- Maison -->
+    <string name="book">Réserver</string>
+    <!-- Map -->
+    <string name="date_format">%1$d/%2$d/%3$d</string>
+
+    <!-- NFC -->
+    <string name="scan_nfc">Scan un tag NFC</string>
+
+
+
+</resources>

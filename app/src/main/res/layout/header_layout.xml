@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/headerBackground"
+        android:paddingBottom="4dp">
+
+        <LinearLayout
+            android:id="@+id/header_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:paddingTop="4dp">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:contentDescription="@string/logo_desc"
+                android:src="@drawable/ic_launcher_foreground"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paris Caretaker Service"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:layout_marginStart="8dp"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/header_container"
+        android:background="@drawable/shadow_header" />
+
+</RelativeLayout>
