@@ -1,0 +1,5 @@
+api.url=https://api.example.com
+app.url=https://example.com
+stripe.public.key=pk_test_1234
+stripe.secret.key=sk_test_1234
+google.map.key=1234

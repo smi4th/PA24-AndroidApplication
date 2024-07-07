@@ -95,17 +95,10 @@ class NfcActivity : AppCompatActivity() {
 
                 val tag = it.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
                 tag?.let { nfcTag ->
-                    // Hide the dot animation
                     dotLayout.visibility = View.GONE
-
-                    // Update text view to show scan results
                     textView.text = ""
                     val techList = nfcTag.techList.joinToString(", ")
-
-                    // Center the text
                     textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
-
-                    // Check Ndef
                     val ndef = Ndef.get(nfcTag)
                     if (ndef != null) {
                         ndef.connect()

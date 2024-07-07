@@ -1,6 +1,5 @@
 package com.pariscaretaker.projet
 
-import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -41,13 +40,9 @@ import com.android.volley.VolleyError
 
 class SearchActivity : AppCompatActivity() {
 
-    private lateinit var startDateEditText: EditText
-    private lateinit var endDateEditText: EditText
     private lateinit var locationAutoCompleteTextView: AutoCompleteTextView
     private lateinit var searchButton: Button
     private lateinit var placesClient: PlacesClient
-    private val startDateCalendar: Calendar = Calendar.getInstance()
-    private val endDateCalendar: Calendar = Calendar.getInstance()
     private var selectedPlaceId: String? = null
     private var selectedLatLng: LatLng? = null
 
@@ -80,22 +75,23 @@ class SearchActivity : AppCompatActivity() {
 
         requestQueue = Volley.newRequestQueue(this)
 
+        val localProperties = Properties()
+        try {
+            val inputStream: InputStream = assets.open("local.properties")
+            localProperties.load(inputStream)
+        } catch (e: Exception) {
+            Toast.makeText(this, "local.properties file not found", Toast.LENGTH_LONG).show()
+            return
+        }
+        val apiKey = localProperties.getProperty("google.maps.key")
 
-        Places.initialize(applicationContext, getString(R.string.google_maps_key))
+        Places.initialize(applicationContext, apiKey)
         placesClient = Places.createClient(this)
 
-        startDateEditText = findViewById(R.id.startDateEditText)
-        endDateEditText = findViewById(R.id.endDateEditText)
         locationAutoCompleteTextView = findViewById(R.id.locationAutoCompleteTextView)
         searchButton = findViewById(R.id.searchButton)
 
-        startDateEditText.setOnClickListener {
-            showDatePickerDialog(startDateEditText, startDateCalendar)
-        }
 
-        endDateEditText.setOnClickListener {
-            showDatePickerDialog(endDateEditText, endDateCalendar)
-        }
 
         //autocompletion
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mutableListOf<String>())
@@ -219,7 +215,6 @@ class SearchActivity : AppCompatActivity() {
             addressList.add(Pair(jsonObject, address))
         }
 
-        // Function to handle the coordinates fetched for each address
         val handleFetchedCoordinates: (Int) -> Unit = { index ->
             if (index == addressList.size) {
                 callback(housingList)
@@ -252,7 +247,15 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun fetchCoordinates(address: String, callback: (LatLng?) -> Unit) {
-        val apiKey = getString(R.string.google_maps_key)
+        val localProperties = Properties()
+        try {
+            val inputStream: InputStream = assets.open("local.properties")
+            localProperties.load(inputStream)
+        } catch (e: Exception) {
+            Toast.makeText(this, "local.properties file not found", Toast.LENGTH_LONG).show()
+            return
+        }
+        val apiKey = localProperties.getProperty("google.maps.key")
         val url = "https://maps.googleapis.com/maps/api/geocode/json?address=${address.replace(" ", "%20")}&key=$apiKey"
 
         val request = StringRequest(Request.Method.GET, url,
@@ -282,19 +285,5 @@ class SearchActivity : AppCompatActivity() {
 
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
-
-    private fun showDatePickerDialog(dateEditText: EditText, calendar: Calendar) {
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        val datePickerDialog = DatePickerDialog(this, { _, year, month, dayOfMonth ->
-            calendar.set(Calendar.YEAR, year)
-            calendar.set(Calendar.MONTH, month)
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            dateEditText.setText(getString(R.string.date_format, dayOfMonth, month + 1, year))
-        }, year, month, day)
-        datePickerDialog.show()
     }
 }

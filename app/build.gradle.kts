@@ -57,4 +57,5 @@ dependencies {
 
     implementation(libs.material)
     implementation("com.applandeo:material-calendar-view:1.9.0")
+    implementation("com.stripe:stripe-android:20.48.0")
 }

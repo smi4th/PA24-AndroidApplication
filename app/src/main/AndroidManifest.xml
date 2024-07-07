@@ -41,7 +41,27 @@
         <activity android:name=".MapActivity" android:exported="false"/>
         <activity android:name=".MessageActivity" android:exported="false"/>
         <activity android:name=".ChatActivity" android:exported="false"/>
-        <activity android:name=".HousingDetailActivity" android:exported="false"/>
+        <activity android:name=".BasketActivity" android:exported="false"/>
+
+        <activity android:name=".HousingDetailActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="your-app-scheme" android:host="stripe-redirect" android:path="/success" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="your-app-scheme" android:host="stripe-redirect" android:path="/cancel" />
+            </intent-filter>
+        </activity>
+
 
         <activity android:name=".NfcActivity" android:exported="true">
             <intent-filter>

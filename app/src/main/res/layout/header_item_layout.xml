@@ -50,56 +50,6 @@
 
             </LinearLayout>
 
-            <!-- When Question -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/icon_calendar"
-                    android:contentDescription="@string/question_when" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/question_when"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:textColor="@android:color/black"
-                    android:layout_marginStart="8dp"
-                    android:background="@null" />
-            </LinearLayout>
-
-            <!-- Who Question -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/icon_person"
-                    android:contentDescription="@string/question_who" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/question_who"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:textColor="@android:color/black"
-                    android:layout_marginStart="8dp"
-                    android:background="@null" />
-            </LinearLayout>
-
         </LinearLayout>
 
     </LinearLayout>
@@ -125,4 +75,5 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:id="@+id/text_interest"/>
+
 </LinearLayout>

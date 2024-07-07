@@ -1,7 +1,5 @@
 //A faire
-Réservation maison //PAS DE ROUTE SUR LE POSTMAN
 Services
 NFC validation //MANQUE BDD
-onglet profil sécurité
-Modifier données personnelles //Pas forcément utile IMO
+onglet profil resa
 

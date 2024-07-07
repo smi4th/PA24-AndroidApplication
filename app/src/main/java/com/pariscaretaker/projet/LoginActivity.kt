@@ -77,7 +77,6 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("API_RESPONSE", response.toString())
             },
             Response.ErrorListener { error ->
-                // Enhanced error logging
                 error.printStackTrace()
                 val responseBody = error.networkResponse?.data?.let { String(it) }
                 val statusCode = error.networkResponse?.statusCode

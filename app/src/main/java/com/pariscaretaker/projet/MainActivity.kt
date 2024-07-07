@@ -30,10 +30,9 @@ import com.android.volley.toolbox.StringRequest
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.AutocompletePrediction
-import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import org.json.JSONException
 
 class MainActivity : AppCompatActivity() {
@@ -76,7 +75,17 @@ class MainActivity : AppCompatActivity() {
         }
         fetchHousingData()
 
-        Places.initialize(applicationContext, getString(R.string.google_maps_key))
+        val localProperties = Properties()
+        try {
+            val inputStream: InputStream = assets.open("local.properties")
+            localProperties.load(inputStream)
+        } catch (e: Exception) {
+            Toast.makeText(this, "local.properties file not found", Toast.LENGTH_LONG).show()
+            return
+        }
+        val apiKey = localProperties.getProperty("google.maps.key")
+
+        Places.initialize(applicationContext, apiKey)
         placesClient = Places.createClient(this)
 
         val profileIcon = findViewById<ImageView>(R.id.icon_home)
@@ -124,9 +133,12 @@ class MainActivity : AppCompatActivity() {
                     if (response.autocompletePredictions.isNotEmpty()) {
                         selectedPlaceId = response.autocompletePredictions[0].placeId
                     }
+                }.addOnFailureListener { exception ->
+                    Log.e("PlacesAPI", "Prediction fetching task failed with exception: $exception")
                 }
             }
         })
+
         searchButton.setOnClickListener {
             selectedPlaceId?.let { placeId ->
                 val placeFields = listOf(com.google.android.libraries.places.api.model.Place.Field.ID, com.google.android.libraries.places.api.model.Place.Field.LAT_LNG)
@@ -138,7 +150,6 @@ class MainActivity : AppCompatActivity() {
 
                     selectedLatLng?.let { latLng ->
                         fetchAndShowHousingData(latLng) { housingList ->
-                            Toast.makeText(this, "Found $ housings", Toast.LENGTH_LONG).show()
                             val intent = Intent(this, MapActivity::class.java)
                             intent.putExtra("LATITUDE", latLng.latitude)
                             intent.putExtra("LONGITUDE", latLng.longitude)
@@ -245,7 +256,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchCoordinates(address: String, callback: (LatLng?) -> Unit) {
-        val apiKey = getString(R.string.google_maps_key)
+        val localProperties = Properties()
+        try {
+            val inputStream: InputStream = assets.open("local.properties")
+            localProperties.load(inputStream)
+        } catch (e: Exception) {
+            Toast.makeText(this, "local.properties file not found", Toast.LENGTH_LONG).show()
+            return
+        }
+        val apiKey = localProperties.getProperty("google.maps.key")
         val url = "https://maps.googleapis.com/maps/api/geocode/json?address=${address.replace(" ", "%20")}&key=$apiKey"
 
         val request = StringRequest(Request.Method.GET, url,
